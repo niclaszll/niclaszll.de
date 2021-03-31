@@ -1,3 +1,3 @@
 # Resume
 
-Instructions: https://cloudresumechallenge.dev/instructions/
+Idea: [100DaysOfCloudChallenge](https://cloudresumechallenge.dev/instructions/)
