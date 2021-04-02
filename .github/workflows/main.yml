@@ -6,6 +6,9 @@ on:
       - master
       - main
 
+env:
+  GATSBY_API_ENDPOINT: ${{ secrets.GATSBY_API_ENDPOINT }}
+
 jobs:
   deploy-frontend:
     runs-on: ubuntu-latest

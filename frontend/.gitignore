@@ -71,3 +71,8 @@ package-lock.json
 .ssh
 .vscode-server
 .gitconfig
+
+# env
+
+.env.development
+.env.production

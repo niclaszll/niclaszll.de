@@ -242,7 +242,7 @@ $RECYCLE.BIN/
 */build/*
 
 # sam build artifacts
-.aws-sam/
+.aws-sam/*
 
 # sam config
 samconfig.toml
