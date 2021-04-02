@@ -1,4 +1,4 @@
-name: DeployS3
+name: DeployResume
 
 on:
   push:
@@ -7,9 +7,12 @@ on:
       - main
 
 jobs:
-  deploy:
+  deploy-frontend:
     runs-on: ubuntu-latest
-    if: "contains(github.event.head_commit.message, 'run-ci')"
+    defaults:
+      run:
+        working-directory: frontend
+    if: "contains(github.event.head_commit.message, 'run-ci-frontend')"
     steps:
       - uses: actions/checkout@v1
       - name: Configure AWS Credentials
