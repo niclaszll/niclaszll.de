@@ -1,0 +1,51 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: Resume view counter backend
+
+Globals:
+  Function:
+    Runtime: python3.8
+    MemorySize: 128
+
+Resources:
+  ResumeCounterFunction:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      FunctionName: ResumeCounterFunction
+      CodeUri: ./
+      Handler: handlers/app.lambda_handler
+      Description: Function to count site views
+      Timeout: 3
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ResumeCounterTable
+      Events:
+        ResumeViews:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ResumeApi
+            Path: /count
+            Method: get
+
+  ResumeApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      Cors:
+        AllowOrigin: "'https://niclaszll.de'"
+      EndpointConfiguration: Regional
+      OpenApiVersion: 3.0.1
+      StageName: v1
+
+  ResumeCounterTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+      AttributeDefinitions: 
+        - AttributeName: resource
+          AttributeType: S
+      KeySchema: 
+        - AttributeName: resource
+          KeyType: HASH
+      TableName: ResumeCounterTable
