@@ -23,6 +23,7 @@ def lambda_handler(event, context):
     return {
         "statusCode": 200,
         "headers": {
+            "Access-Control-Allow-Headers": "Content-Type",
             "Access-Control-Allow-Origin": "https://niclaszll.de"
         },
         "body": json.dumps(views, indent=4, cls=DecimalEncoder)
