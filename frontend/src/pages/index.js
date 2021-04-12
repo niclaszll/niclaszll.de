@@ -16,7 +16,7 @@ export default function IndexPage() {
   return (
     <Layout>
       <SEO title="Home" />
-      <h1>Ja moin v2</h1>
+      <h1>Ja moin v3</h1>
       <p>{`Nr: ${count}`}</p>
       <p>Welcome to your new Gatsby site.</p>
       <p>Now go build something great.</p>
