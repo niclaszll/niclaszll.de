@@ -12,7 +12,7 @@ export default function IndexPage() {
     getVisitorCount().then(res => {
       setCount(res)
     })
-  })
+  }, [])
   return (
     <Layout>
       <SEO title="Home" />
