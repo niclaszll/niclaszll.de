@@ -15,16 +15,15 @@ def lambda_handler(event, context):
     response = table.update_item(
         Key={'resource': 'website'},
         ExpressionAttributeValues={':inc': decimal.Decimal(1)},
-        UpdateExpression="ADD visitor_count :inc"
+        UpdateExpression="ADD visitor_count :inc",
+        ReturnValues="UPDATED_NEW"
     )
-
-    item = table.get_item(Key={'resource': 'website'})
-    views = item['Item']['visitor_count']
+    
     return {
         "statusCode": 200,
         "headers": {
             "Access-Control-Allow-Headers": "Content-Type",
             "Access-Control-Allow-Origin": "https://niclaszll.de"
         },
-        "body": json.dumps(views, indent=4, cls=DecimalEncoder)
+        "body": json.dumps(response['Attributes']['visitor_count'], indent=4, cls=DecimalEncoder)
     }
