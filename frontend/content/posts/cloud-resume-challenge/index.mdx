@@ -155,7 +155,7 @@ steps:
     run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
 ```
 
-To begin, the AWS credentials are configured for this run, retrieved from secrets defined in the GitHub repository. After that, the same steps are performed that would be executed locally on the developer's PC: build the application with npm and push the folder to S3 via the AWS CLI. After that, the cloudfront cache is invalidated so that the pushed changes are displayed immediately.
+To begin, the AWS credentials are configured for this run, retrieved from secrets defined in the GitHub repository. After that, the same steps are performed that would also be executed locally on the developer's PC: build the application with npm and push the folder to S3 via the AWS CLI. Afterwards, the CloudFront cache is invalidated so that pushed changes are displayed immediately.
 
 ## Conclusion
 
